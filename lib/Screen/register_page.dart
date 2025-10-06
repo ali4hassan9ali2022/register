@@ -106,8 +106,8 @@ class RegisterPage extends StatelessWidget {
                         child: Center(
                           child: state is RegisterLoadingState
                               ? SizedBox(
-                                  height: 20.h,
-                                  width: 20.w,
+                                  height: 20,
+                                  width: 20,
                                   child: CircularProgressIndicator(),
                                 )
                               : Text(
