@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:register_app/Screen/register_page.dart';
 import 'package:register_app/Widgets/custom_button.dart';
 import 'package:register_app/Widgets/custom_text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class LoginPage extends StatelessWidget {
                   color: Colors.blue,
                   child: Center(
                     child: Text(
-                      "Login",
+                      "Register",
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
@@ -68,22 +67,15 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't have an account?",
+                      "Already have an account?",
                       style: TextStyle(fontSize: 18.sp, color: Colors.grey),
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return RegisterPage();
-                            },
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
                       child: Text(
-                        " Register",
+                        " Login",
                         style: TextStyle(
                           fontSize: 18.sp,
                           color: Colors.blueAccent,
@@ -99,7 +91,6 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
   OutlineInputBorder outlineInputBorder({Color? color}) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: color ?? Colors.grey),
