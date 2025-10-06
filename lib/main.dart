@@ -28,8 +28,8 @@ class RegisterApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => LoginCubit(),),
-            BlocProvider(create: (context) => RegisterCubit(),),
+            BlocProvider(create: (context) => LoginCubit()),
+            BlocProvider(create: (context) => RegisterCubit()),
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,
