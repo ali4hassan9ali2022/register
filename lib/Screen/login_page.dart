@@ -71,9 +71,12 @@ class LoginPage extends StatelessWidget {
                         hintText: "Password",
                         keyboardType: TextInputType.text,
                         prefixIcon: Icon(Icons.password),
+                        obscureText: login.isObsecure,
                         suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.visibility_off),
+                          onPressed: () {
+                            login.changePasswordVisibility();
+                          },
+                          icon: Icon(login.suffix),
                         ),
                       ),
                       SizedBox(height: 30.h),

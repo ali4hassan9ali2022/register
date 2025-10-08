@@ -8,6 +8,7 @@ import 'package:register_app/Cubit/Register_cubit/register_state.dart';
 import 'package:register_app/Screen/home_page.dart';
 import 'package:register_app/Widgets/custom_button.dart';
 import 'package:register_app/Widgets/custom_text_form_field.dart';
+import 'package:register_app/Widgets/password_conditions_widget.dart';
 import 'package:register_app/Widgets/toast_widget.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -69,9 +70,15 @@ class RegisterPage extends StatelessWidget {
                       ),
                       SizedBox(height: 16.h),
                       CustomTextFormField(
+                        onChanged: (value) {
+                          register.checkPasswordStrength(value);
+                        },
                         validator: (value) {
-                          if (value!.isEmpty) {
+                          if (value == null || value.isEmpty) {
                             return "Enter Your Password";
+                          }
+                          if (!register.passwordRegex.hasMatch(value)) {
+                            return "Password does not meet all conditions";
                           }
                           return null;
                         },
@@ -82,9 +89,42 @@ class RegisterPage extends StatelessWidget {
                         hintText: "Password",
                         keyboardType: TextInputType.text,
                         prefixIcon: Icon(Icons.password),
+                        obscureText: register.isObsecure,
                         suffixIcon: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.visibility_off),
+                          onPressed: () {
+                            register.changePasswordVisibility();
+                          },
+                          icon: Icon(register.suffix),
+                        ),
+                      ),
+                      SizedBox(height: 12.h),
+
+                      PasswordConditionsWidget(register: register),
+                      SizedBox(height: 16.h),
+                      CustomTextFormField(
+                        validator: (value) {
+                          if (register
+                                  .confirmPasswordController
+                                  .text
+                                  .characters !=
+                              register.passwordController.text.characters) {
+                            return "Passwords don't match";
+                          }
+                          return null;
+                        },
+                        controller: register.confirmPasswordController,
+                        border: outlineInputBorder(),
+                        enabledBorder: outlineInputBorder(),
+                        focusedBorder: outlineInputBorder(color: Colors.blue),
+                        hintText: "Confirm Password",
+                        keyboardType: TextInputType.text,
+                        prefixIcon: Icon(Icons.password),
+                        obscureText: register.isObsecure,
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            register.changePasswordVisibility();
+                          },
+                          icon: Icon(register.suffix),
                         ),
                       ),
                       SizedBox(height: 30.h),

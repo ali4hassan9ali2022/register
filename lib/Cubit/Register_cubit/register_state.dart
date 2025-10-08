@@ -11,3 +11,4 @@ class RegisterFailureState extends RegisterState {
 
   RegisterFailureState({required this.errMessage});
 }
+class ChangePassworsVisibailitystate extends RegisterState{}

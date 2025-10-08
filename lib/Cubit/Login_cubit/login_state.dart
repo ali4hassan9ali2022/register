@@ -7,3 +7,4 @@ class LoginFailureState extends LoginState{
 
   LoginFailureState({required this.errMessage});
 }
+class ChangePassworsVisibailitystate extends LoginState{}
